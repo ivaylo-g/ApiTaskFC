@@ -75,10 +75,15 @@ public class SharedMethods implements Constants {
                 .body("size()", is(pageLimit));
     }
 
-    public void SortAndOrder(String sortedBy,String order) {
-        given().when().get(LIST_USERS + "/?sortBy=" + sortedBy +"&order=" + order).then()
-                .statusCode(200)
-                ;
+    public void SortAndOrder(String sortedBy, String order) {
+
+        Response res = given().when().get(LIST_USERS + "/?sortBy=" + sortedBy +"&order=" + order).then()
+                .statusCode(200).log().body().extract().response();
+
+        String name = res.jsonPath().get("name").toString();
+
+        System.out.println(name);
+//        Assert.assertEquals();
     }
 
 }
