@@ -4,5 +4,7 @@ public interface Constants {
     String LIST_USERS = "/users";
 
     //names
-    String Corrine = "Corrine Stracke";
+    String CORRINE = "Corrine Stracke";
+    String ADRIANNA = "Adrianna Reinger";
+    String IVAN = "Ivane Ivane";
 }

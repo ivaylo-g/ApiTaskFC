@@ -15,19 +15,19 @@ public class Tests implements Constants {
     @Test
     public void ListUsers() {
 
-        sharedMethods.CheckListUsersHasInputParameter(Constants.Corrine);
+        sharedMethods.CheckListUsersHasInputParameter(Constants.CORRINE);
     }
 
     @Test
     public void ReturnSpecificUser() {
 
-        sharedMethods.GetSpecificUserAndVerifyName(2 , Constants.Corrine);
+        sharedMethods.GetSpecificUserAndVerifyName(2 , Constants.CORRINE);
     }
     
     @Test
     public void UpdateUser() {
 
-        sharedMethods.VerifyUpdateUserWithNewName(3, "Ivane Ivane");
+        sharedMethods.VerifyUpdateUserWithNewName(3, Constants.IVAN);
     }
 
     @Test
@@ -56,6 +56,6 @@ public class Tests implements Constants {
     @Test
     public void SortAndOrder() {
         sharedMethods.GetFirstValueOnSortAndOrder("name","asc" );
-        Assert.assertEquals(sharedMethods.GetFirstValueOnSortAndOrder("name","asc" ), "Adrianna Reinger");
+        Assert.assertEquals(sharedMethods.GetFirstValueOnSortAndOrder("name","asc" ), Constants.ADRIANNA);
     }
 }
