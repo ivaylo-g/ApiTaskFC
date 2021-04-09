@@ -2,31 +2,15 @@ import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.response.Response;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 import static com.jayway.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.*;
 
 public class SharedMethods implements Constants {
 
 
-    public void GetBaseURL() {
-
-        RestAssured.baseURI = BASE_URL;
-    }
-
-    public void GetListUsers(String Corrine) {
-
-        given().when().get(LIST_USERS).then()
-                .statusCode(200)
-                .body("name", hasItems(Corrine));
-    }
-
-    public void GetSpecificUser(Integer userID) {
-
-        given().when().get(LIST_USERS + "/" + userID).then()
-                .statusCode(200);
-    }
-
-    public static Integer CreateNewUser() {
+    public static Integer VerifyCreationOfNewUsersAndReturnsItsID() {
         Response res = given()
                 .contentType("application/json")
                 .when()
@@ -40,8 +24,26 @@ public class SharedMethods implements Constants {
         return id;
     }
 
+    public void GetBaseURL() {
 
-    public void UpdateUser(Integer userID, String name) {
+        RestAssured.baseURI = BASE_URL;
+    }
+
+    public void CheckListUsersHasInputParameter(String Corrine) {
+
+        given().when().get(LIST_USERS).then()
+                .statusCode(200)
+                .body("name", hasItems(Corrine));
+    }
+
+    public void GetSpecificUserAndVerifyName(Integer userID ,String name) {
+
+        given().when().get(LIST_USERS + "/" + userID).then()
+                .statusCode(200)
+                .body("name", equalTo(name));
+    }
+
+    public void VerifyUpdateUserWithNewName(Integer userID, String name) {
         JSONObject request = new JSONObject();
         request.put("name", name);
 
@@ -53,8 +55,6 @@ public class SharedMethods implements Constants {
                 .then()
                 .statusCode(200)
                 .body("name", equalTo(name));
-
-
     }
 
     public void DeleteUser(Integer userID) {
@@ -63,27 +63,27 @@ public class SharedMethods implements Constants {
                 .statusCode(200);
     }
 
-    public void AlreadyDeletedUser(Integer userID) {
+    public void CheckStatusCodeOnAlreadyDeletedUser(Integer userID) {
 
         given().when().delete(LIST_USERS + "/" + userID).then()
                 .statusCode(404);
     }
 
-    public void PageLimit(int pageLimit) {
+    public void CheckPageLimitIsEqualToBodySize(int pageLimit) {
         given().when().get(LIST_USERS + "/?page=1&limit=" + pageLimit).then()
                 .statusCode(200)
                 .body("size()", is(pageLimit));
     }
 
-    public void SortAndOrder(String sortedBy, String order) {
+    @SuppressWarnings("rawtypes")
+    public String GetFirstValueOnSortAndOrder(String sortedBy, String order) {
 
-        Response res = given().when().get(LIST_USERS + "/?sortBy=" + sortedBy +"&order=" + order).then()
+        Response res = given().when().get(LIST_USERS + "/?sortBy=" + sortedBy + "&order=" + order).then()
                 .statusCode(200).log().body().extract().response();
 
-        String name = res.jsonPath().get("name").toString();
+        ArrayList sortedByValueArrList = res.jsonPath().get(sortedBy);
 
-        System.out.println(name);
-//        Assert.assertEquals();
+        return (String) sortedByValueArrList.get(0);
     }
 
 }

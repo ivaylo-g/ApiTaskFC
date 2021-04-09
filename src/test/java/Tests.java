@@ -1,3 +1,4 @@
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,49 +15,47 @@ public class Tests implements Constants {
     @Test
     public void ListUsers() {
 
-        sharedMethods.GetListUsers(Constants.Corrine);
+        sharedMethods.CheckListUsersHasInputParameter(Constants.Corrine);
     }
 
     @Test
     public void ReturnSpecificUser() {
 
-        sharedMethods.GetSpecificUser(2);
+        sharedMethods.GetSpecificUserAndVerifyName(2 , Constants.Corrine);
     }
     
     @Test
     public void UpdateUser() {
 
-        sharedMethods.UpdateUser(3, "Ivane Ivane");
+        sharedMethods.VerifyUpdateUserWithNewName(3, "Ivane Ivane");
     }
 
     @Test
     public void CreateUser() {
-
-        sharedMethods.CreateNewUser();
+        SharedMethods.VerifyCreationOfNewUsersAndReturnsItsID();
     }
 
     @Test
     public void DeleteUser() {
 
-        sharedMethods.DeleteUser(sharedMethods.CreateNewUser());
+        sharedMethods.DeleteUser(SharedMethods.VerifyCreationOfNewUsersAndReturnsItsID());
     }
 
 
     @Test
     public void AlreadyDeletedUser() {
 
-        sharedMethods.AlreadyDeletedUser(1);
+        sharedMethods.CheckStatusCodeOnAlreadyDeletedUser(1);
     }
 
     @Test
     public void PageLimit() {
-
-        sharedMethods.PageLimit(13);
+        sharedMethods.CheckPageLimitIsEqualToBodySize(13);
     }
 
     @Test
     public void SortAndOrder() {
-
-        sharedMethods.SortAndOrder("name","asc" );
+        sharedMethods.GetFirstValueOnSortAndOrder("name","asc" );
+        Assert.assertEquals(sharedMethods.GetFirstValueOnSortAndOrder("name","asc" ), "Adrianna Reinger");
     }
 }
