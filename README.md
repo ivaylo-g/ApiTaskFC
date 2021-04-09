@@ -1,10 +1,10 @@
 ## Repository for the QA automation task
 
 
-UI Automation has done with Java 8 and Rest Assured
+API Automation Tests has done with Java 8 and Rest Assured
 
 ### Description 
-It's a Maven project. Used 3rd party dependencies are Junit,Json,Hamcrest,Rest-Assured and the following versions:
+It's a Maven project. Used 3rd party libraries are Junit,Json,Hamcrest,Rest-Assured with the following versions:
 ``` bash
 Rest-Assured v2.9
 Junit v4.12
