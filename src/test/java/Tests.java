@@ -7,26 +7,21 @@ public class Tests implements Constants {
 
     @Before
     public void Setup() {
-
         sharedMethods.GetBaseURL();
     }
 
-
     @Test
     public void ListUsers() {
-
         sharedMethods.CheckListUsersHasInputParameter(Constants.CORRINE);
     }
 
     @Test
     public void ReturnSpecificUser() {
-
-        sharedMethods.GetSpecificUserAndVerifyName(2 , Constants.CORRINE);
+        sharedMethods.GetSpecificUserAndVerifyName(2, Constants.CORRINE);
     }
-    
+
     @Test
     public void UpdateUser() {
-
         sharedMethods.VerifyUpdateUserWithNewName(7, Constants.IVAN);
     }
 
@@ -43,7 +38,6 @@ public class Tests implements Constants {
 
     @Test
     public void AlreadyDeletedUser() {
-
         sharedMethods.CheckStatusCodeOnAlreadyDeletedUser(1);
     }
 
@@ -54,7 +48,7 @@ public class Tests implements Constants {
 
     @Test
     public void SortAndOrder() {
-        sharedMethods.GetFirstValueOnSortAndOrder("name","asc" );
-        Assert.assertEquals(sharedMethods.GetFirstValueOnSortAndOrder("name","asc" ), Constants.ADRIANNA);
+        sharedMethods.GetFirstValueOnSortAndOrder("name", "asc");
+        Assert.assertEquals(sharedMethods.GetFirstValueOnSortAndOrder("name", "asc"), Constants.ADRIANNA);
     }
 }

@@ -57,6 +57,13 @@ public class SharedMethods implements Constants {
                 .then()
                 .statusCode(200)
                 .body("name", equalTo(name));
+
+        given()
+                .when()
+                .get(LIST_USERS + "/" + userID)
+                .then()
+                .statusCode(200)
+                .body("name", equalTo(name));
     }
 
     public static void DeleteUser(Integer userID) {
