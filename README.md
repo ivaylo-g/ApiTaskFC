@@ -19,5 +19,5 @@ The tests can be run with Run command from the IDE.
 Tests could be also run with executing the following commands:
 
 ``` bash
- mvn clean test
+ mvn test
 ```

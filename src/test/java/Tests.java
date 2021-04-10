@@ -27,7 +27,7 @@ public class Tests implements Constants {
     @Test
     public void UpdateUser() {
 
-        sharedMethods.VerifyUpdateUserWithNewName(3, Constants.IVAN);
+        sharedMethods.VerifyUpdateUserWithNewName(7, Constants.IVAN);
     }
 
     @Test
@@ -38,9 +38,8 @@ public class Tests implements Constants {
     @Test
     public void DeleteUser() {
 
-        sharedMethods.DeleteUser(SharedMethods.VerifyCreationOfNewUsersAndReturnsItsID());
+        SharedMethods.DeleteUser(SharedMethods.VerifyCreationOfNewUsersAndReturnsItsID());
     }
-
 
     @Test
     public void AlreadyDeletedUser() {

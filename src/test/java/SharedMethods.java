@@ -1,6 +1,7 @@
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.response.Response;
 import org.json.JSONObject;
+import org.junit.Assert;
 
 import java.util.ArrayList;
 
@@ -23,6 +24,7 @@ public class SharedMethods implements Constants {
         System.out.println(id);
         return id;
     }
+
 
     public void GetBaseURL() {
 
@@ -57,10 +59,18 @@ public class SharedMethods implements Constants {
                 .body("name", equalTo(name));
     }
 
-    public void DeleteUser(Integer userID) {
+    public static void DeleteUser(Integer userID) {
 
         given().when().delete(LIST_USERS + "/" + userID).then()
                 .statusCode(200);
+
+        String res = given().when().get(LIST_USERS + "/" + userID).then()
+                .statusCode(404)
+                .extract()
+                .asString();
+
+        Assert.assertEquals("Not found",res.replace("\"", ""));
+
     }
 
     public void CheckStatusCodeOnAlreadyDeletedUser(Integer userID) {
