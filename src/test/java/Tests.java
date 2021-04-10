@@ -16,6 +16,11 @@ public class Tests implements Constants {
     }
 
     @Test
+    public void UserNotFound() {
+        sharedMethods.GetMissingUser(1111);
+    }
+
+    @Test
     public void ReturnSpecificUser() {
         sharedMethods.GetSpecificUserAndVerifyName(2, Constants.CORRINE);
     }

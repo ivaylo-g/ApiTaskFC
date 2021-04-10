@@ -45,6 +45,15 @@ public class SharedMethods implements Constants {
                 .body("name", equalTo(name));
     }
 
+    public void GetMissingUser(Integer userID) {
+        String res = given().when().get(LIST_USERS + "/" + userID).then()
+                .statusCode(404)
+                .extract()
+                .asString();
+
+        Assert.assertEquals("Not found",res.replace("\"", ""));
+    }
+
     public void VerifyUpdateUserWithNewName(Integer userID, String name) {
         JSONObject request = new JSONObject();
         request.put("name", name);
